@@ -8,7 +8,16 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'npm install'
+        parallel(
+          "build": {
+            sh 'npm install'
+            
+          },
+          "test": {
+            sh 'npm -v'
+            
+          }
+        )
       }
     }
   }
